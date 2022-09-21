@@ -1,4 +1,4 @@
-"""setup file for imports"""
+"""setup file for imports so that pylint willm recognize our modules"""
 
 from setuptools import setup, find_packages
 
