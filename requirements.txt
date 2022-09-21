@@ -1,2 +1,4 @@
 MarkupSafe==2.0.0
 Flask==2.2.2
+pylint==2.15.3
+pytest==7.1.3
