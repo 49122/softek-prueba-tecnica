@@ -1,5 +1,5 @@
 ## Summary
-This project delivers and API that includes a CRUD type service for users for our app.
+This project delivers and API as was asked from softtek .
  
 ## How To Use
 
@@ -10,7 +10,7 @@ To clone and run this application, you'll need [Git](https://git-scm.com) and [P
 $ git clone https://github.com/49122/softek-prueba-tecnica.git
 
 # Go into the repository
-$ cd softek-prueba-tecnica
+$ cd softtek-prueba-tecnica
 
 # Create virtual enviroment
 $ python -m venv .env
@@ -74,7 +74,7 @@ $ cd src/ && flask --app prueba_tecnica run
 ```json
 	{
         "112-5230502-8173028": "Winter",
-        "112-7714081-3300254": "Spring",,
+        "112-7714081-3300254": "Spring",
     }
 ```
 -- Possible errors:
