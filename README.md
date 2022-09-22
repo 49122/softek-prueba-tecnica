@@ -7,7 +7,7 @@ To clone and run this application, you'll need [Git](https://git-scm.com) and [P
 
 ```bash
 # Clone this repository
-$ git clone https://github.com/49122/softek-prueba-tecnica.git
+$ git clone https://github.com/49122/softtek-prueba-tecnica.git
 
 # Go into the repository
 $ cd softtek-prueba-tecnica
