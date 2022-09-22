@@ -76,7 +76,18 @@ def customer_order_status():
 
 @app.route('/seasons', methods=['POST'])
 def seasons_problem():
-    """a"""
+    """seasons resource:
+    expected body:
+    {
+        "data": [
+            [str,str,int],
+        ]
+    }
+    expected response:
+    {
+        "112-5230502-8173028": "Winter",
+        "112-7714081-3300254": "Spring",,
+    }"""
 
     # We check if request has data in it, other wise we respond an error message
     if request.data:
@@ -107,7 +118,30 @@ def seasons_problem():
 
 @app.route('/detecting-change', methods=['POST'])
 def detecting_change_problem():
-    """a"""
+    """detecting change resource:
+    expected body:
+    {
+        "data": [
+            [str,str],
+        ]
+    }
+    expected response:
+    {
+        [
+            [
+                "1/2/20",
+                "TRUE"
+            ],
+            [
+                "1/6/20",
+                "TRUE"
+            ],
+            [
+                "1/8/20",
+                "TRUE"
+            ]
+        ]
+    }"""
 
     # We check if request has data in it, other wise we respond an error message
     if request.data:
