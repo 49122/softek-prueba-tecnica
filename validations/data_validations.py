@@ -2,6 +2,53 @@
 # Imports
 from datetime import datetime
 
+def detecting_change_data_validation(data):
+    """
+    Utility: data validating function for our service /detecting-change
+    Data structure should look like this:
+    {
+        "data": [
+        ["1/1/20", "False"],
+        ["1/2/20", "TRUE"],
+        ["1/3/20", "TRUE"],
+        ["1/4/20", "False"],
+        ["1/5/20", "False"],
+        ["1/6/20", "TRUE"],
+        ["1/7/20", "False"],
+        ["1/8/20", "TRUE"],
+        ["1/9/20", "TRUE"],
+        ["1/10/20", "TRUE"]
+        ]
+    }
+    """
+    # Expected date format
+    date_format = "%m/%d/%y"
+
+    # First validation comes in the form of a type check; making sure our data wrapper "data"...
+    # its a list other wise we return false that is latter understood as an error on the data.
+    if not isinstance(data,list):
+        return False
+
+    # iterating over the data
+    for instance in data:
+        # Inside of our wrapper "data" we should have multiple lists and we know that each...
+        # list should have a lenght of 3 for "order number", "item name" nd "status"
+        if (not isinstance(instance,list)) or (len(instance) != 2):
+            return False
+
+        # checking each object within the list for the correct data type
+        if (not isinstance(instance[0],str)) or (not isinstance(instance[1],str)):
+            return False
+
+        try:
+            datetime.strptime(instance[0], date_format)
+        except ValueError as exp:
+            print(exp)
+            print("This is the incorrect date string format. It should be %m/%d/%y")
+            return False
+
+    return True
+
 def seasons_data_validation(data):
     """
     Utility: data validating function for our service /seasons
@@ -48,7 +95,7 @@ def seasons_data_validation(data):
             datetime.strptime(instance[1], date_format)
         except ValueError as exp:
             print(exp)
-            print("This is the incorrect date string format. It should be %m/%d/%y")
+            print("This is the incorrect date string format. It should be %d/%m/%y")
             return False
 
     #if we pass all validations for evey entry then we return True which is understood as a succes

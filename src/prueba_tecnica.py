@@ -2,10 +2,12 @@
 
 # Flask imports
 from flask import Flask, request
-# utilities: data validation
+# utilities: data validation and seasons validation
 from validations.data_validations import customer_order_status_data_validation
 from validations.data_validations import seasons_data_validation
+from validations.data_validations import detecting_change_data_validation
 from validations.seasons_validations import get_season
+from validations.detect_weather_change import sort_dates,change_detection
 
 # Initialization of our flask application
 app = Flask(__name__)
@@ -102,4 +104,33 @@ def seasons_problem():
     # Finally we send out our response object in the form of a dictionary that flask...
     # understands and parces to json
     return response_obj
-    
+
+@app.route('/detecting-change', methods=['POST'])
+def detecting_change_problem():
+    """a"""
+
+    # We check if request has data in it, other wise we respond an error message
+    if request.data:
+        pass
+    else:
+        return {"response": "No data recieved"}, 400
+
+    # Validating of the correct wrapper for our data, other wise we respond an error message
+    if request.json["data"]:
+        val_data = detecting_change_data_validation(request.json["data"])
+    else:
+        return {"response": "Data recieved does not have the proper structure"}, 400
+
+    # If the data structure is not valid we return an error message
+    if not val_data:
+        return {"response": "Data recieved does not have the proper structure"}, 400
+
+    # Sorting dates so that we can make sure the change in weather is relevant
+    sorted_data = sort_dates(request.json["data"])
+
+    # Creation of response object with te relevant change dates
+    response_obj = change_detection(sorted_data)
+
+    # Finally we send out our response object in the form of a dictionary that flask...
+    # understands and parces to json
+    return response_obj

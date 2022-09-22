@@ -1,4 +1,4 @@
-"""Season vaidation"""
+"""Season validation"""
 from datetime import date, datetime
 
 def get_season(given_date:str):
